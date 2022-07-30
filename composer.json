@@ -1,0 +1,21 @@
+{
+    "name": "vilija19/web3login",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "vilija19\\web3login\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Alex",
+            "email": "billibons777@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "kornrunner/keccak": "^1.1",
+        "simplito/elliptic-php": "^1.0"        
+    }
+}
