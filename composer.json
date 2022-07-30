@@ -18,5 +18,12 @@
         "laravel/breeze": "1.9.4",
         "kornrunner/keccak": "^1.1",
         "simplito/elliptic-php": "^1.0"        
-    }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "vilija19\\web3login\\Web3ServiceProvider"
+            ]
+        }
+    }    
 }
