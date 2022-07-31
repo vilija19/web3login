@@ -9,6 +9,12 @@ use kornrunner\Keccak;
 class Web3
 {
 
+    /**
+     * @param string $message
+     * @param string $signature
+     * @param string $address
+     * @return bool
+     */
     public static function verifySignature($message, $signature, $address): bool
     {
         $hash = Keccak::hash(sprintf("\x19Ethereum Signed Message:\n%s%s", strlen($message), $message), 256);

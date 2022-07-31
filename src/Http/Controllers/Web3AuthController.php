@@ -10,6 +10,12 @@ use vilija19\web3login\Web3;
 
 class Web3AuthController extends Controller
 {
+    /**
+     * Create authenticate user.
+     * @param Request $request
+     *
+     * @return void
+     */
     public function authenticate(Request $request)
     {
         Web3::verifySignature(
@@ -20,6 +26,11 @@ class Web3AuthController extends Controller
     
         $user = User::query()->where('eth_address', $request->address)->first();
 
+        /**
+         * This is a new user, create a new user and log them in.
+         * If you don't to allow login only with metamask (without usual registration), you can remove this.
+         * Start
+         */
         if (!$user) {
             $user = new User();
             $user->name = 'metamask-user';
@@ -28,6 +39,9 @@ class Web3AuthController extends Controller
             $user->eth_address = $request->address;
             $user->save();
         }
+        /**
+         * End
+         */
     
         auth()->login($user);
     
@@ -35,7 +49,13 @@ class Web3AuthController extends Controller
     
         return true;
     }
-     
+
+    /**
+     * Create signature message.
+     * @param Request $request
+     *
+     * @return string
+     */
     public function signature(Request $request)
     {
         // Generate some random nonce
