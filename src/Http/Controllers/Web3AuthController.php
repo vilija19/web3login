@@ -31,7 +31,7 @@ class Web3AuthController extends Controller
          * If you don't to allow login only with metamask (without usual registration), you can remove this.
          * Start
          */
-        if (!$user) {
+        if (!$user && config('web3login.strict_mode') == false) {
             $user = new User();
             $user->name = 'metamask-user';
             $user->email = $request->address;
