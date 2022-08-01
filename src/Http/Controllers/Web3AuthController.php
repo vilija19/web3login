@@ -26,11 +26,8 @@ class Web3AuthController extends Controller
     
         $user = User::query()->where('eth_address', $request->address)->first();
 
-        /**
-         * This is a new user, create a new user and log them in.
-         * If you don't to allow login only with metamask (without usual registration), you can remove this.
-         * Start
-         */
+        session()->forget('metamask-nonce');
+
         if (!$user && config('web3login.strict_mode') == false) {
             $user = new User();
             $user->name = 'metamask-user';
@@ -38,14 +35,14 @@ class Web3AuthController extends Controller
             $user->password = Str::random(16);
             $user->eth_address = $request->address;
             $user->save();
+            auth()->login($user);
+        }elseif ($user) {
+            auth()->login($user);
+        }else {
+            return back()->withErrors([
+                'email' => trans('auth.failed'),
+            ]);
         }
-        /**
-         * End
-         */
-    
-        auth()->login($user);
-    
-        session()->forget('metamask-nonce');
     
         return true;
     }

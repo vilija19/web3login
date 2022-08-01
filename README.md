@@ -18,7 +18,7 @@ After user can edit his profile if he wants (Complete name,email etc).
 More strict. At first, user must do usual registration and provides Ethereum address to his profile.  
 In next logins, he will be able login by CryptoWallet  
 
-This behaviour is determined in the file **src/Http/Controllers/Web3AuthController.php** method **authenticate()** section `if (!$user) {`  
+This behaviour is determined in the config file (strict_mode).  
 
 Installation
 ------------
